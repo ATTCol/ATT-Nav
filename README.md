@@ -3,5 +3,5 @@
 
 Instructions:
 
-*Clone this repo
-*Clone the lms1xx repo next to it
+-Clone this repo
+-Clone the lms1xx repo next to it
