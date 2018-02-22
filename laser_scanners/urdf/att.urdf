@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+
+<robot name="ATT">
+
+
+  <material name="blue">
+    <color rgba="0 0 0.8 1"/>
+  </material>
+  <material name="yellow">
+    <color rgba="1 0.8 0 0.8"/>
+  </material>
+  <material name="black">
+    <color rgba="0 0 0 1"/>
+  </material>
+  <material name="white">
+    <color rgba="1 1 1 1"/>
+  </material>
+
+  <link name="world"/>
+
+  <link name="att">
+    <visual>
+      <geometry>
+        <box size="2.542 5.660 0.906"/>
+      </geometry>
+      <material name="yellow"/>
+    </visual>
+  </link>
+
+  <joint name="att_to_world" type="fixed">
+    <parent link="world"/>
+    <child link="att"/>
+    <origin xyz="0 0 0.717"/>
+  </joint>
+
+  <link name="cabine">
+    <visual>
+      <geometry>
+        <box size="1.271 1.7 2.004"/>
+      </geometry>
+      <material name="yellow"/>
+    </visual>
+  </link>
+
+  <joint name="att_to_cabine" type="fixed">
+    <parent link="att"/>
+    <child link="cabine"/>
+    <origin xyz="0.6355 -1.980 1.455"/>
+  </joint>
+
+  <link name="wiel_rechts_voor">
+    <visual>
+      <geometry>
+        <cylinder length="0.279" radius="0.527"/>
+      </geometry>
+      <origin rpy="0 1.57075 0"/>
+      <material name="black"/>
+    </visual>
+  </link>
+
+  <joint name="att_to_wiel_recht_voor" type="fixed">
+    <parent link="att"/>
+    <child link="wiel_rechts_voor"/>
+    <origin xyz="-1.1315 -1.330 -0.190"/>
+  </joint>
+
+  <link name="wiel_rechts_achter">
+    <visual>
+      <geometry>
+        <cylinder length="0.279" radius="0.527"/>
+      </geometry>
+      <origin rpy="0 1.57075 0"/>
+      <material name="black"/>
+    </visual>
+  </link>
+
+  <joint name="att_to_wiel_rechts_achter" type="fixed">
+    <parent link="att"/>
+    <child link="wiel_rechts_achter"/>
+    <origin xyz="-1.1315 2.070 -0.190"/>
+  </joint>
+
+  <link name="wiel_links_voor">
+    <visual>
+      <geometry>
+        <cylinder length="0.279" radius="0.527"/>
+      </geometry>
+      <origin rpy="0 1.57075 0"/>
+      <material name="black"/>
+    </visual>
+  </link>
+
+  <joint name="att_to_wiel_links_voor" type="fixed">
+    <parent link="att"/>
+    <child link="wiel_links_voor"/>
+    <origin xyz="1.1315 -1.330 -0.190"/>
+  </joint>
+
+  <link name="wiel_links_achter">
+    <visual>
+      <geometry>
+        <cylinder length="0.279" radius="0.527"/>
+      </geometry>
+      <origin rpy="0 1.57075 0"/>
+      <material name="black"/>
+    </visual>
+  </link>
+
+  <joint name="att_to_wiel_links_achter" type="fixed">
+    <parent link="att"/>
+    <child link="wiel_links_achter"/>
+    <origin xyz="1.1315 2.070 -0.190"/>
+  </joint>
+
+  <link name="scanner_left">
+    <visual>
+      <geometry>
+        <!-- Origin of this mesh is the focal point of the LIDAR. -->
+        <mesh filename="package://lms1xx/meshes/sick-lms1xx.dae" />
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="scanner_right">
+    <visual>
+      <geometry>
+        <!-- Origin of this mesh is the focal point of the LIDAR. -->
+        <mesh filename="package://lms1xx/meshes/sick-lms1xx.dae" />
+      </geometry>
+    </visual>
+  </link>
+
+
+  <!--<xacro:sick_lms1xx frame="scanner_left" topic="scan1" sample_size="720" update_rate="50"
+               min_angle="-2.35619" max_angle="2.35619" min_range="0.1" max_range:="20.0" robot_namespace="/" >-->
+
+  <joint name="att_to_scanner_left" type="fixed">
+    <parent link="att"/>
+    <child link="scanner_left"/>
+    <origin rpy="3.1415923565 0 -0.785398163" xyz="1.221 -2.880 -0.407"/>
+  </joint>
+
+  <joint name="att_to_scanner_right" type="fixed">
+    <parent link="att"/>
+    <child link="scanner_right"/>
+    <origin rpy="3.1415923565 0 2.35619449" xyz="-1.221 2.880 -0.407"/>
+  </joint>
+
+</robot>

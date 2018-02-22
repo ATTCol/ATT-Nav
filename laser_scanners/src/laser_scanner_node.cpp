@@ -51,6 +51,7 @@ int main(int argc, char **argv)
   std::string host1;
   std::string host2;
   std::string frame_id1;
+  std::string frame_id2;
   int port;
 
   ros::init(argc, argv, "lms1xx");
@@ -61,7 +62,8 @@ int main(int argc, char **argv)
 
   n.param<std::string>("host1", host1, "192.168.0.137");
   n.param<std::string>("host2", host2, "192.168.0.1");
-  n.param<std::string>("frame_id", frame_id1, "world");
+  n.param<std::string>("frame_id1", frame_id1, "scanner_left");
+  n.param<std::string>("frame_id2", frame_id2, "scanner_right");
   n.param<int>("port", port, 2111);
 
 
@@ -142,7 +144,7 @@ int main(int argc, char **argv)
     ROS_DEBUG("Laser2 output range:angleResolution %d, startAngle %d, stopAngle %d",
               outputRange2.angleResolution, outputRange2.startAngle, outputRange2.stopAngle);
 
-    scan2_msg.header.frame_id = frame_id1;
+    scan2_msg.header.frame_id = frame_id2;
     scan2_msg.range_min = 0.01;
     scan2_msg.range_max = 20.0;
     scan2_msg.scan_time = 100.0 / cfg2.scaningFrequency;

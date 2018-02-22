@@ -1,0 +1,12 @@
+<launch>
+  <arg name="host1" default="192.168.0.137" />
+  <arg name="host2" default="192.168.0.1" />
+  <arg name="frame_id1" default="scanner_left" />
+  <arg name="frame_id2" default="scanner_right" />
+  <node pkg="laser_scanners" name="scanners" type="laser_scanner_node">
+    <param name="host1" value="$(arg host1)" />
+    <param name="host2" value="$(arg host2)" />
+    <param name="frame_id1" value="$(arg frame_id1)" />
+    <param name="frame_id2" value="$(arg frame_id2)" />
+  </node>
+</launch>
