@@ -137,13 +137,13 @@
   <joint name="att_to_scanner_left" type="fixed">
     <parent link="att"/>
     <child link="scanner_left"/>
-    <origin rpy="3.1415923565 0 -0.785398163" xyz="1.221 -2.880 -0.407"/>
+    <origin rpy=" 0 3.1415926535 2.35619448" xyz="1.221 -2.880 -0.407"/>
   </joint>
 
   <joint name="att_to_scanner_right" type="fixed">
     <parent link="att"/>
     <child link="scanner_right"/>
-    <origin rpy="3.1415923565 0 2.35619449" xyz="-1.221 2.880 -0.407"/>
+    <origin rpy="0 3.1415923565 0.785398163" xyz="-1.221 -2.880 -0.407"/>
   </joint>
-
+<!--2.35619449-->
 </robot>

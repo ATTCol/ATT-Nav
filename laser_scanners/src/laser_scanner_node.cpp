@@ -60,8 +60,8 @@ int main(int argc, char **argv)
   ros::Publisher scan_pub1 = nh.advertise<sensor_msgs::LaserScan>("scan1", 1);
   ros::Publisher scan_pub2 = nh.advertise<sensor_msgs::LaserScan>("scan2", 1);
 
-  n.param<std::string>("host1", host1, "192.168.0.137");
-  n.param<std::string>("host2", host2, "192.168.0.1");
+  n.param<std::string>("host1", host1, "192.168.0.3");
+  n.param<std::string>("host2", host2, "192.168.0.4");
   n.param<std::string>("frame_id1", frame_id1, "scanner_left");
   n.param<std::string>("frame_id2", frame_id2, "scanner_right");
   n.param<int>("port", port, 2111);
@@ -265,7 +265,7 @@ int main(int argc, char **argv)
 
     ROS_DEBUG("Commanding continuous measurements.");
     laser2.scanContinous(1);
-
+//rospy.Time.no
 
     while (ros::ok())
     {
@@ -280,7 +280,7 @@ int main(int argc, char **argv)
       if (laser1.getScanData(&dataScanner1))
       {
         for (int i = 0; i < dataScanner1.dist_len1; i++)
-        {
+        {//rospy.Time.no
           scan1_msg.ranges[i] = dataScanner1.dist1[i] * 0.001;
         }
 

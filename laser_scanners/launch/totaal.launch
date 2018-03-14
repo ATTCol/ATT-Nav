@@ -1,4 +1,17 @@
 <launch>
+
+  <!-- Deze launchfile roep te URDF op en laat de scandata zien -->
+
+  <!-- Oproepen URDF:-->
+  <arg name="model" default="$(find laser_scanners)/urdf/att.urdf"/>
+  <arg name="gui" default="true" />
+
+  <param name="robot_description" command="$(find laser_scanners)/xacro/xacro.py $(arg model)" />
+  <param name="use_gui" value="$(arg gui)"/>
+
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+
   <arg name="host1" default="192.168.0.3" />
   <arg name="frame_id1" default="scanner_left" />
   <arg name="publish_min_range_as_inf" default="false" />
@@ -16,19 +29,9 @@
     <param name="publish_min_range_as_inf" value="$(arg publish_min_range_as_inf)" />
     <remap from="scan" to="scan2"/>
   </node>
-</launch>
 
-<!-- <launch>
-  <arg name="host1" default="192.168.0.3" />
-  <arg name="frame_id1" default="scanner_left" />
-  <arg name="host2" default="192.168.0.4" />
-  <arg name="frame_id2" default="scanner_right" />
-  <arg name="publish_min_range_as_inf" default="false" />
-  <node pkg="laser_scanners" name="laser_scanner" type="laser_scanner_node">
-    <param name="host1" value="$(arg host1)" />
-    <param name="frame_id1" value="$(arg frame_id1)" />
-    <param name="host2" value="$(arg host2)" />
-    <param name="frame_id2" value="$(arg frame_id2)" />
-    <param name="publish_min_range_as_inf" value="$(arg publish_min_range_as_inf)" />
-  </node>
-</launch> -->
+  <arg name="rvizconfig" default="$(find laser_scanners)/urdf/rviz.rviz" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+
+
+</launch>
